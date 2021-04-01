@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+
+
+  ######################################################
+  # THIS FILE IS AUTO-GENERATED - PLEASE DO NOT CHANGE #
+  ######################################################
+
+#!/usr/bin/env bash
+
+executionplane --silent docker volume create hkvb_poc_blank__blank_volume
+	
+
+executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_blank__blank_volume:/etc/blank ${VCW_REGISTRY}hkvb/infometis console cmd cp -r /source/hkvb/poc/blank/_solution/_configuration/volumes/blank_volume/* /etc/blank
+
