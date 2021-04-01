@@ -6,7 +6,7 @@ services:
   kafka_connect:
     image: ${VCW_REGISTRY}hkvb/confluent.kafka_connect:6.1.1
     environment: ['CONNECT_BOOTSTRAP_SERVERS=kafka:9092','CONNECT_REST_ADVERTISED_HOST_NAME=kafka_connect','CONNECT_REST_PORT=8083','CONNECT_GROUP_ID=${VCW_STACK_GLOBAL_STACKPREFIX}','CONNECT_CONFIG_STORAGE_TOPIC=${VCW_STACK_GLOBAL_STACKPREFIX}_configs','CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=1','CONNECT_OFFSET_FLUSH_INTERVAL_MS=10000','CONNECT_OFFSET_STORAGE_TOPIC=${VCW_STACK_GLOBAL_STACKPREFIX}_offsets','CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=1','CONNECT_STATUS_STORAGE_TOPIC=${VCW_STACK_GLOBAL_STACKPREFIX}_status','CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=1','CONNECT_KEY_CONVERTER=org.apache.kafka.connect.storage.StringConverter','CONNECT_VALUE_CONVERTER=io.confluent.connect.avro.AvroConverter','CONNECT_INTERNAL_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter','CONNECT_INTERNAL_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter','CONNECT_PRODUCER_CLASSPATH=/usr/share/java/monitoring-interceptors/monitoring-interceptors-6.0.0.jar','CONNECT_PRODUCER_INTERCEPTOR_CLASSES=io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor','CONNECT_CONSUMER_INTERCEPTOR_CLASSES=io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor','CONNECT_PLUGIN_PATH=/usr/share/java,/usr/share/confluent-hub-components','CONNECT_LOG4J_LOGGERS=org.apache.zookeeper=ERROR,org.I0Itec.zkclient=ERROR,org.reflections=ERROR'
-${CONFIGURATION_MODULE_KAFKA_CONNECT_ENVIRONMENT_EXTRA}]
+${CONNECT_MODULE_KAFKA_CONNECT_ENVIRONMENT_EXTRA}]
     command: []
     volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_connect_secrets_volume:/etc/kafka-connect/secrets','${VCW_STACK_GLOBAL_STACKPREFIX}_secrets_volume:/etc/kafka/secrets','${VCW_STACK_GLOBAL_STACKPREFIX}_data_volume:/var/lib/kafka/data','${VCW_STACK_GLOBAL_STACKPREFIX}_jars_volume:/etc/kafka-connect/jars']
     ports: []
@@ -15,9 +15,9 @@ ${CONFIGURATION_MODULE_KAFKA_CONNECT_ENVIRONMENT_EXTRA}]
       mode: replicated
       resources:
         limits:
-          memory: '${KAFKA_CONNECT_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+          memory: '${CONNECT_DEPLOY_RESOURCES_LIMITS_MEMORY}'
         reservations:
-          memory: '${KAFKA_CONNECT_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+          memory: '${CONNECT_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
 
       labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
       "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_kafka_connect.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX},/${VCW_STACK_GLOBAL_URLPREFIX}",
@@ -25,7 +25,7 @@ ${CONFIGURATION_MODULE_KAFKA_CONNECT_ENVIRONMENT_EXTRA}]
       traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_kafka_connect.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_kafka_connect@docker,
       traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_kafka_connect.entrypoints=infometis,
       traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_kafka_connect.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}")]
-${KAFKA_CONNECT_COMPOSE_EXTENSIONS}
+${CONNECT_COMPOSE_EXTENSIONS}
 # END SERVICE hkvb/confluent/kafka_connect/traefik
 
 networks: {${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}

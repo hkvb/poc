@@ -1,6 +1,6 @@
-boot/shutdown,controlcenter,controlcenter
-boot/shutdown,kafka,kafka
-boot/shutdown,kafka_connect,kafka_connect
-boot/shutdown,ksqldb,ksqldb
-boot/shutdown,schema_registry,schema_registry
-boot/shutdown,zookeeper,zookeeper
+boot/shutdown,connect
+start/stop,controlcenter
+boot/shutdown,kafka
+boot/shutdown,ksqldb
+boot/shutdown,schema_registry
+boot/shutdown,zookeeper
