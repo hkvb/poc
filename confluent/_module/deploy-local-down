@@ -1,0 +1,160 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_poc_confluent__$1"
+prefix="vcw_module_hkvb_poc_confluent__$1"
+
+executionplane --silent docker container prune --force
+
+if [[ "vcw_module_hkvb_poc_confluent__kafka_secrets_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__kafka_secrets_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__kafka_secrets_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__kafka_data_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__kafka_data_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__kafka_data_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__kafka_connect_secrets_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__kafka_connect_secrets_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__kafka_connect_secrets_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__kafka_connect_connect_secrets_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__kafka_connect_connect_secrets_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__kafka_connect_connect_secrets_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__kafka_connect_data_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__kafka_connect_data_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__kafka_connect_data_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__kafka_connect_jars_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__kafka_connect_jars_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__kafka_connect_jars_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__ksqldb_queries_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__ksqldb_queries_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__ksqldb_queries_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__schema_registry_secrets_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__schema_registry_secrets_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__schema_registry_secrets_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__zookeeper_secrets_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__zookeeper_secrets_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__zookeeper_secrets_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__zookeeper_data_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__zookeeper_data_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__zookeeper_data_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent__zookeeper_log_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_confluent__zookeeper_log_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_confluent__zookeeper_log_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi

@@ -1,0 +1,11 @@
+kafka_secrets_volume
+kafka_data_volume
+kafka_connect_secrets_volume
+kafka_connect_connect_secrets_volume
+kafka_connect_data_volume
+kafka_connect_jars_volume
+ksqldb_queries_volume
+schema_registry_secrets_volume
+zookeeper_secrets_volume
+zookeeper_data_volume
+zookeeper_log_volume

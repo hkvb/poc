@@ -1,0 +1,32 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/confluent/ksqldb/traefik
+  ksqldb:
+    image: ${VCW_REGISTRY}confluentinc/cp-ksqldb-server:6.1.1
+    environment: ['KSQL_CONFIG_DIR=/etc/ksql', 'KSQL_BOOTSTRAP_SERVERS=${CONFIGURATION_MODULE_KSQLDB_ENVIRONMENT_BOOTSTRAP_SERVERS}','KSQL_HOST_NAME=${CONFIGURATION_MODULE_KSQLDB_ENVIRONMENT_KSQL_HOST_NAME}', 'KSQL_CACHE_MAX_BYTES_BUFFERING=0', 'KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE=true','KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR=1','KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE=true','KSQL_KSQL_SERVICE_ID=${VCW_STACK_GLOBAL_STACKPREFIX}_'${CONFIGURATION_MODULE_KSQLDB_ENVIRONMENT_EXTRA}]
+    command: []
+    volumes: [${VCW_STACK_GLOBAL_STACKPREFIX}_queries_volume:/vcw/pwd]
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${KSQLDB_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${KSQLDB_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+
+      labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
+      "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX},/${VCW_STACK_GLOBAL_URLPREFIX}",
+      traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb.loadbalancer.server.port=8088,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb@docker,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb.entrypoints=infometis,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}")]
+${VCW_STACK_GRAFANA_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/confluent/ksqldb/traefik
+
+networks: {${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_queries_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
