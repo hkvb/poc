@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # START CONFIGURATION
-export VCW_STACK_GLOBAL_PACKAGE_CONTECO="hkvb/confluent/schema_registry"
+export VCW_STACK_GLOBAL_PACKAGE_CONTECO="hkvb/confluent/schema_registry/traefik"
 export VCW_STACK_GLOBAL_PACKAGE_TAG="6.1.1"
 export VCW_STACK_GLOBAL_STACKNAMES="schema_registry"
 export VCW_STACK_GLOBAL_BOOTSTACKS="schema_registry"
