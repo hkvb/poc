@@ -2,7 +2,7 @@ boot/shutdown,elastic
 start/stop,grafana
 boot/shutdown,kafka
 start/stop,kibana
-boot/shutdown,ksqldb
+start/stop,ksqldb
 boot/shutdown,schema_registry
-boot/shutdown,streamsets
+start/stop,streamsets
 boot/shutdown,zookeeper
