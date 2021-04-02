@@ -1,0 +1,25 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/elastic/metricbeat/overlay
+  metricbeat:
+    image: ${VCW_REGISTRY}hkvb/elastic.metricbeat:7.11.2
+    environment: ['ES_METRICBEAT_LOGGING_LEVEL=${METRICS_OVERLAY_ENVIRONMENT_LOGGING_LEVEL}','ES_METRICBEAT_OVERLAY=${VCW_STACK_GLOBAL_NETWORKLOCAL}']
+    command: []
+    volumes: ['/etc:/hostfs/etc:ro','${VCW_STACK_GLOBAL_STACKPREFIX}_config:/vcw/pwd','${VCW_STACK_GLOBAL_STACKPREFIX}_volume:/usr/share/metricbeat/data']
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${METRICS_OVERLAY_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${METRICS_OVERLAY_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${METRICS_OVERLAY_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/elastic/metricbeat/overlay
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_config: { external: true },${VCW_STACK_GLOBAL_STACKPREFIX}_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}

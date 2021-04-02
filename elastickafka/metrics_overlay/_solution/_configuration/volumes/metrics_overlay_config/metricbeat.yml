@@ -1,0 +1,73 @@
+fields:
+  overlay: ${ES_METRICBEAT_OVERLAY:overlay}
+  source: overlay-metrics
+
+metricbeat.modules:
+
+- module: elasticsearch
+  enabled: true
+  metricsets: ["node", "node_stats"]
+  period: 30s
+  hosts: ["http://elasticsearch:9200"]
+
+- module: jolokia
+  enabled: false
+  period: 30s
+  hosts: ["jolokia"]
+  namespace: "metrics"
+  jmx.mappings:
+  jmx.application:
+  jmx.instance:
+
+- module: kafka
+  enabled: true
+  metricsets: ["consumergroup", "partition"]
+  period: 30s
+  hosts: ["kafka:9092"]
+
+- module: kibana
+  enabled: true
+  metricsets: ["status"]
+  period: 30s
+  hosts: ["kibana:5601"]
+  basepath: ""
+
+- module: traefik
+  enabled: false
+  metricsets: ["health"]
+  period: 30s
+  hosts: ["traefik:8080/metrics"]
+
+- module: zookeeper
+  enabled: true
+  metricsets: ["mntr", "server"]
+  period: 30s
+  hosts: ["zookeeper:2181"]
+
+output.console:
+  enabled: true
+  pretty: false
+
+output.elasticsearch:
+  enabled: false
+  hosts: 'elasticsearch:9200'
+
+setup.kibana.host: "kibana:5601"
+setup.dashboards.enabled: false
+
+output.kafka:
+  enabled: false
+  hosts: "kafka:9092"
+  topic: 'es_filebeat_kafka'
+  version: "2.0.0"
+  partition.round_robin:
+    reachable_only: false
+
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
+
+logging.level: ${ES_METRICBEAT_LOGGING_LEVEL:warning}
+logging.metrics.enabled: false
+logging.metrics.period: 30s
+logging.json: false

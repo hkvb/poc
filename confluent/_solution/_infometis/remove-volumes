@@ -141,3 +141,30 @@ do
 	fi
 done;
 	
+#!/usr/bin/env bash
+
+executionplane --silent docker container prune --force
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "hkvb_poc_confluent___metrics_overlay_config"
+	result=$(docker volume ls | grep "hkvb_poc_confluent___metrics_overlay_config")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	
+continue="true"
+while [[ "true" == "$continue" ]] ;
+do
+	executionplane docker volume rm "hkvb_poc_confluent___metrics_overlay_volume"
+	result=$(docker volume ls | grep "hkvb_poc_confluent___metrics_overlay_volume")
+	if [[ "$result" == "" ]] ; then
+		continue="false"
+	else
+		sleep 3;
+	fi
+done;
+	

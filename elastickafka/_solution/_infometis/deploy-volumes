@@ -40,3 +40,12 @@ executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_el
 
 executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_elastickafka__streamsets_volume:/data ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/poc/elastickafka/./_solution/_configuration/volumes/streamsets_volume.tar
 
+#!/usr/bin/env bash
+
+executionplane --silent docker volume create hkvb_poc_elastickafka___metrics_overlay_config
+	
+executionplane --silent docker volume create hkvb_poc_elastickafka___metrics_overlay_volume
+	
+
+executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_elastickafka___metrics_overlay_config:/vcw/pwd ${VCW_REGISTRY}hkvb/infometis console cmd cp -r /source/hkvb/poc/elastickafka/metrics_overlay/_solution/_configuration/volumes/metrics_overlay_config/* /vcw/pwd
+
