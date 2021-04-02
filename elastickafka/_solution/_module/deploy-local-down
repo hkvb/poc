@@ -1,0 +1,146 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_poc_elastickafka__$1"
+prefix="vcw_module_hkvb_poc_elastickafka__$1"
+
+executionplane --silent docker container prune --force
+
+if [[ "vcw_module_hkvb_poc_elastickafka__elastic_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__elastic_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__elastic_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_elastickafka__grafana_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__grafana_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__grafana_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_elastickafka__kafka_secrets_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__kafka_secrets_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__kafka_secrets_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_elastickafka__kafka_data_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__kafka_data_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__kafka_data_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_elastickafka__ksqldb_queries_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__ksqldb_queries_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__ksqldb_queries_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_elastickafka__schema_registry_secrets_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__schema_registry_secrets_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__schema_registry_secrets_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_elastickafka__streamsets_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__streamsets_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__streamsets_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_elastickafka__zookeeper_secrets_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__zookeeper_secrets_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__zookeeper_secrets_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_elastickafka__zookeeper_data_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__zookeeper_data_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__zookeeper_data_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_poc_elastickafka__zookeeper_log_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_poc_elastickafka__zookeeper_log_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_poc_elastickafka__zookeeper_log_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi

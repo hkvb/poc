@@ -1,0 +1,2 @@
+kafka_data_volume:/var/lib/kafka/data
+ksqldb_queries_volume:/vcw/pwd

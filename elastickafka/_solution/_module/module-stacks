@@ -1,0 +1,8 @@
+boot/shutdown,elastic
+start/stop,grafana
+boot/shutdown,kafka
+start/stop,kibana
+boot/shutdown,ksqldb
+boot/shutdown,schema_registry
+boot/shutdown,streamsets
+boot/shutdown,zookeeper

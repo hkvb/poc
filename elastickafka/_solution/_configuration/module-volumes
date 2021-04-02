@@ -1,0 +1,10 @@
+elastic_volume
+grafana_volume
+kafka_secrets_volume
+kafka_data_volume
+ksqldb_queries_volume
+schema_registry_secrets_volume
+streamsets_volume
+zookeeper_secrets_volume
+zookeeper_data_volume
+zookeeper_log_volume

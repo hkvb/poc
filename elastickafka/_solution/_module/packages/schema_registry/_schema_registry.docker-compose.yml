@@ -1,0 +1,32 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/confluent/schema_registry/traefik
+  schema_registry:
+    image: ${VCW_REGISTRY}confluentinc/cp-schema-registry:6.1.1
+    environment: ['SCHEMA_REGISTRY_HOST_NAME=${VCW_STACK_GLOBAL_STACKPREFIX}', 'SCHEMA_REGISTRY_LISTENERS=http://0.0.0.0:8081', 'SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=${SCHEMA_REGISTRY_ENVIRONMENT_KAFKASTORE_BOOTSTRAP_SERVERS}'${SCHEMA_REGISTRY_ENVIRONMENT_EXTRA}]
+    command: []
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_secrets_volume:/etc/schema-registry/secrets']
+    ports: [8081:8081]
+    networks: [${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${SCHEMA_REGISTRY_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${SCHEMA_REGISTRY_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+
+      labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
+      "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_schema_registry.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX},/${VCW_STACK_GLOBAL_URLPREFIX}/",
+      traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_schema_registry.loadbalancer.server.port=8081,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_schema_registry.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_schema_registry@docker,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_schema_registry.entrypoints=infometis,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_schema_registry.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}")]
+${SCHEMA_REGISTRY_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/confluent/schema_registry/traefik
+
+networks: {${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_secrets_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}

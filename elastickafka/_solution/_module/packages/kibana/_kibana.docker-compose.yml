@@ -1,0 +1,32 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/elastic/kibana/traefik
+  kibana:
+    image: ${VCW_REGISTRY}kibana:7.11.2
+    environment: ['ELASTICSEARCH_HOSTS=http://elasticsearch:9200','SERVER_BASEPATH=/${VCW_STACK_GLOBAL_URLPREFIX}', 'XPACK_MONITORING_UI_CONTAINER_ELASTICSEARCH_ENABLED=false', 'LOGGING_VERBOSE=${KIBANA_MODULE_KIBANA_LOGGING_VERBOSE}']
+    command: []
+    volumes: []
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${KIBANA_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${KIBANA_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+
+      labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
+      "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX},/${VCW_STACK_GLOBAL_URLPREFIX}/",
+      traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.loadbalancer.server.port=5601,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_kibana@docker,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.entrypoints=infometis,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_kibana.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}") ]
+${KIBANA_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/elastic/kibana/traefik
+
+networks: {${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}

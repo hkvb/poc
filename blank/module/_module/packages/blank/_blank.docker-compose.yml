@@ -1,0 +1,25 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/poc/blank/stack
+  blank:
+    image: ${VCW_REGISTRY}hkvb/poc.blank.image:1.0.0
+    environment: []
+    command: [--keepalive:60]
+    volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_volume:/etc/blank']
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${BLANK_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${BLANK_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${BLANK_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/poc/blank/stack
+
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_volume: { external: true }}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
