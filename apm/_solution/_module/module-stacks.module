@@ -1,0 +1,3 @@
+boot/shutdown,apm
+boot/shutdown,elastic
+start/stop,kibana

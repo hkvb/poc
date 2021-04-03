@@ -35,6 +35,10 @@ Blank stack structure - with access to local swarm network only.
 
 Blank stack structure - with access to local and global swarm network.
 
+## hkvb/poc/apm
+
+Module and solution of a full ElasticSearch APM server stack.
+
 ## hkvb/poc/confluent
 
 Module and solution of a full Confluent stack - Control Center, Kafka, Schema Registry, Kafka Connect and ksqlDB.

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_poc_apm__$1"
+prefix="vcw_module_hkvb_poc_apm__$1"
+
+if [[ "vcw_module_hkvb_poc_apm__elastic_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_poc_apm__elastic_volume
+fi
+
+if [[ "vcw_module_hkvb_poc_apm__elastic_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_poc_apm__elastic_volume:/usr/share/elasticsearch/data ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/poc/apm/_module/volumes/elastic_volume.tar
+fi

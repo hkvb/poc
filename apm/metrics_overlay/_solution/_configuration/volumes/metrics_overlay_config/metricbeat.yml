@@ -20,7 +20,7 @@ metricbeat.modules:
   jmx.instance:
 
 - module: kafka
-  enabled: true
+  enabled: false
   metricsets: ["consumergroup", "partition"]
   period: 30s
   hosts: ["kafka:9092"]
@@ -39,7 +39,7 @@ metricbeat.modules:
   hosts: ["traefik:8080/metrics"]
 
 - module: zookeeper
-  enabled: true
+  enabled: false
   metricsets: ["mntr", "server"]
   period: 30s
   hosts: ["zookeeper:2181"]

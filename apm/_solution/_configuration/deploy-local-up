@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+executionplane --silent docker volume create hkvb_poc_apm__elastic_volume
+	
+
+executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_apm__elastic_volume:/usr/share/elasticsearch/data ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/poc/apm/./_solution/_configuration/volumes/elastic_volume.tar
+

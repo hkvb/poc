@@ -1,0 +1,32 @@
+---
+version: '3'
+services:
+
+# START SERVICE hkvb/elastic/apm/traefik
+  apm:
+    image: ${VCW_REGISTRY}docker.elastic.co/apm/apm-server:7.11.2
+    environment: ['ELASTICSEARCH_HOSTS=http://elasticsearch:9200']
+    command: []
+    volumes: []
+    ports: []
+    networks: [${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
+    deploy:
+      mode: replicated
+      resources:
+        limits:
+          memory: '${APM_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+        reservations:
+          memory: '${APM_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+
+      labels: [traefik.enable=true,traefik.docker.network=${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay,
+      "traefik.http.middlewares.${VCW_STACK_GLOBAL_STACKPREFIX}_apm.stripprefix.prefixes=/${VCW_STACK_GLOBAL_URLPREFIX},/${VCW_STACK_GLOBAL_URLPREFIX}/",
+      traefik.http.services.${VCW_STACK_GLOBAL_STACKPREFIX}_apm.loadbalancer.server.port=8200,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_apm.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_apm@docker,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_apm.entrypoints=infometis,
+      traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_apm.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}") ]
+${APM_COMPOSE_EXTENSIONS}
+# END SERVICE hkvb/elastic/apm/traefik
+
+networks: {${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
+volumes: {}
+${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
