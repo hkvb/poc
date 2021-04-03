@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_confluent_controlcenter__$1"
+prefix="vcw_module_hkvb_confluent_controlcenter__$1"

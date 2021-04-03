@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_elastic_metricbeat_overlay__$1"
+prefix="vcw_module_hkvb_elastic_metricbeat_overlay__$1"
+
+executionplane --silent docker container prune --force
+
+if [[ "vcw_module_hkvb_elastic_metricbeat_overlay__metrics_overlay_config" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_elastic_metricbeat_overlay__metrics_overlay_config"
+		result=$(docker volume ls | grep "vcw_module_hkvb_elastic_metricbeat_overlay__metrics_overlay_config")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi
+
+if [[ "vcw_module_hkvb_elastic_metricbeat_overlay__metrics_overlay_volume" == "$prefix"* ]] ; then
+	continue="true"
+	while [[ "true" == "$continue" ]] ;
+	do
+		executionplane docker volume rm "vcw_module_hkvb_elastic_metricbeat_overlay__metrics_overlay_volume"
+		result=$(docker volume ls | grep "vcw_module_hkvb_elastic_metricbeat_overlay__metrics_overlay_volume")
+		if [[ "$result" == "" ]] ; then
+			continue="false"
+		else
+			sleep 3;
+		fi
+	done;
+fi

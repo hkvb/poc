@@ -5,7 +5,7 @@ fields:
 metricbeat.modules:
 
 - module: elasticsearch
-  enabled: true
+  enabled: false
   metricsets: ["node", "node_stats"]
   period: 30s
   hosts: ["http://elasticsearch:9200"]
@@ -26,7 +26,7 @@ metricbeat.modules:
   hosts: ["kafka:9092"]
 
 - module: kibana
-  enabled: true
+  enabled: false
   metricsets: ["status"]
   period: 30s
   hosts: ["kibana:5601"]

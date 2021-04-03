@@ -38,10 +38,10 @@ executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_co
 
 #!/usr/bin/env bash
 
-executionplane --silent docker volume create hkvb_poc_confluent___metrics_overlay_config
+executionplane --silent docker volume create hkvb_poc_confluent__metrics_overlay_config
 	
-executionplane --silent docker volume create hkvb_poc_confluent___metrics_overlay_volume
+executionplane --silent docker volume create hkvb_poc_confluent__metrics_overlay_volume
 	
 
-executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_confluent___metrics_overlay_config:/vcw/pwd ${VCW_REGISTRY}hkvb/infometis console cmd cp -r /source/hkvb/poc/confluent/metrics_overlay/_solution/_configuration/volumes/metrics_overlay_config/* /vcw/pwd
+executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_confluent__metrics_overlay_config:/vcw/pwd ${VCW_REGISTRY}hkvb/infometis console cmd cp -r /source/hkvb/poc/confluent/metrics_overlay/_solution/_configuration/volumes/metrics_overlay_config/* /vcw/pwd
 

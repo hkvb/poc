@@ -147,8 +147,8 @@ executionplane --silent docker container prune --force
 continue="true"
 while [[ "true" == "$continue" ]] ;
 do
-	executionplane docker volume rm "hkvb_poc_confluent___metrics_overlay_config"
-	result=$(docker volume ls | grep "hkvb_poc_confluent___metrics_overlay_config")
+	executionplane docker volume rm "hkvb_poc_confluent__metrics_overlay_config"
+	result=$(docker volume ls | grep "hkvb_poc_confluent__metrics_overlay_config")
 	if [[ "$result" == "" ]] ; then
 		continue="false"
 	else
@@ -159,8 +159,8 @@ done;
 continue="true"
 while [[ "true" == "$continue" ]] ;
 do
-	executionplane docker volume rm "hkvb_poc_confluent___metrics_overlay_volume"
-	result=$(docker volume ls | grep "hkvb_poc_confluent___metrics_overlay_volume")
+	executionplane docker volume rm "hkvb_poc_confluent__metrics_overlay_volume"
+	result=$(docker volume ls | grep "hkvb_poc_confluent__metrics_overlay_volume")
 	if [[ "$result" == "" ]] ; then
 		continue="false"
 	else
