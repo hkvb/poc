@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+prefix="vcw_module_hkvb_poc_confluent_kafka__$1"
+prefix="vcw_module_hkvb_poc_confluent_kafka__$1"
+
+if [[ "vcw_module_hkvb_poc_confluent_kafka__kafka_secrets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_poc_confluent_kafka__kafka_secrets_volume
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent_kafka__kafka_data_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_poc_confluent_kafka__kafka_data_volume
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent_kafka__schema_registry_secrets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_poc_confluent_kafka__schema_registry_secrets_volume
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent_kafka__zookeeper_secrets_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_poc_confluent_kafka__zookeeper_secrets_volume
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent_kafka__zookeeper_data_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_poc_confluent_kafka__zookeeper_data_volume
+fi
+
+if [[ "vcw_module_hkvb_poc_confluent_kafka__zookeeper_log_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcw_module_hkvb_poc_confluent_kafka__zookeeper_log_volume
+fi
