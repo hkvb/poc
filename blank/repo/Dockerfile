@@ -1,3 +1,4 @@
+# architectures: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
 FROM ${VCW_REGISTRY}hkvb/bash.wrapper:5.0.18
 
 COPY ./ /vcw/repo/
