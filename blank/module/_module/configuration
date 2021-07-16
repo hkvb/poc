@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+ # START MODULE CONFIGURATION
+DOLLAR='$'
+export VCW_MODULE_PACKAGES="\
+module:hkvb/poc/blank/image"
+# END MODULE CONFIGURATION
