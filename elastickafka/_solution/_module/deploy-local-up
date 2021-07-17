@@ -42,19 +42,3 @@ fi
 if [[ "vcw_module_hkvb_poc_elastickafka__zookeeper_log_volume" == "$prefix"* ]] ; then
 	executionplane --silent docker volume create vcw_module_hkvb_poc_elastickafka__zookeeper_log_volume
 fi
-
-if [[ "vcw_module_hkvb_poc_elastickafka__elastic_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_poc_elastickafka__elastic_volume:/usr/share/elasticsearch/data ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/poc/elastickafka/_module/volumes/elastic_volume.tar
-fi
-
-if [[ "vcw_module_hkvb_poc_elastickafka__grafana_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_poc_elastickafka__grafana_volume:/var/lib/grafana ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/poc/elastickafka/_module/volumes/grafana_volume.tar
-fi
-
-if [[ "vcw_module_hkvb_poc_elastickafka__ksqldb_queries_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_poc_elastickafka__ksqldb_queries_volume:/vcw/pwd ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/poc/elastickafka/_module/volumes/ksqldb_queries_volume.tar
-fi
-
-if [[ "vcw_module_hkvb_poc_elastickafka__streamsets_volume" == "$prefix"* ]] ; then
-	executionplane --silent docker run -v vcw_infometis_repos:/source -v vcw_module_hkvb_poc_elastickafka__streamsets_volume:/data ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/poc/elastickafka/_module/volumes/streamsets_volume.tar
-fi

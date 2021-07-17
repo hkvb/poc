@@ -1,4 +1,4 @@
 elastic_volume:/usr/share/elasticsearch/data
 grafana_volume:/var/lib/grafana
-ksqldb_queries_volume:/vcw/pwd
+ksqldb_queries_volume:/vcw/queries
 streamsets_volume:/data

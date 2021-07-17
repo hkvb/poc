@@ -1,3 +1,0 @@
-boot/shutdown,kafka
-boot/shutdown,schema_registry
-boot/shutdown,zookeeper

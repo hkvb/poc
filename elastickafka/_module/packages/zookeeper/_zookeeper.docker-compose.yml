@@ -5,7 +5,7 @@ services:
 # START SERVICE hkvb/confluent/zookeeper
   zookeeper:
     image: ${VCW_REGISTRY}confluentinc/cp-zookeeper:6.1.1
-    environment: ['ZOOKEEPER_CLIENT_PORT=2181','ZOOKEEPER_TICK_TIME=2000']
+    environment: ['ZOOKEEPER_CLIENT_PORT=2181','ZOOKEEPER_TICK_TIME=2000','ZOOKEEPER_LOG4J_ROOT_LOGLEVEL=WARN']
     command: []
     volumes: ['${VCW_STACK_GLOBAL_STACKPREFIX}_secrets_volume:/etc/zookeeper/secrets','${VCW_STACK_GLOBAL_STACKPREFIX}_data_volume:/var/lib/zookeeper/data','${VCW_STACK_GLOBAL_STACKPREFIX}_log_volume:/var/lib/zookeeper/log']
     ports: []

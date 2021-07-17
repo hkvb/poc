@@ -1,6 +1,0 @@
-kafka_secrets_volume
-kafka_data_volume
-schema_registry_secrets_volume
-zookeeper_secrets_volume
-zookeeper_data_volume
-zookeeper_log_volume

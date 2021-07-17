@@ -1,2 +1,3 @@
 metrics_overlay_config
+metrics_overlay_entrypoint
 metrics_overlay_volume

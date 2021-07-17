@@ -33,9 +33,6 @@ executionplane --silent docker volume create hkvb_poc_confluent__zookeeper_log_v
 
 executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_confluent__kafka_data_volume:/var/lib/kafka/data ${VCW_REGISTRY}hkvb/infometis console cmd cp -r /source/hkvb/poc/confluent/./_solution/_configuration/volumes/kafka_data_volume/* /var/lib/kafka/data
 
-
-executionplane --silent docker run -v vcw_infometis_repos:/source -v hkvb_poc_confluent__ksqldb_queries_volume:/vcw/pwd ${VCW_REGISTRY}hkvb/infometis console untar /source/hkvb/poc/confluent/./_solution/_configuration/volumes/ksqldb_queries_volume.tar
-
 #!/usr/bin/env bash
 
 executionplane --silent docker volume create hkvb_poc_confluent__metrics_overlay_config

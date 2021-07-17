@@ -1,1 +1,2 @@
 metrics_overlay_config:/vcw/pwd
+metrics_overlay_entrypoint:/vcw/bin

@@ -46,3 +46,7 @@ Module and solution of a full Confluent stack - Control Center, Kafka, Schema Re
 ## hkvb/poc/elastickafka
 
 A module containing an ElasticSearch stack, Kafka with ksqlDB and Schema Registry, Grafana and StreamSets.
+
+## Version
+
+* 1.0.0

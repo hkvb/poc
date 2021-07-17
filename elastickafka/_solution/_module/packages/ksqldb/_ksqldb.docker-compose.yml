@@ -7,7 +7,7 @@ services:
     image: ${VCW_REGISTRY}confluentinc/cp-ksqldb-server:6.1.1
     environment: ['KSQL_CONFIG_DIR=/etc/ksql', 'KSQL_BOOTSTRAP_SERVERS=${KSQLDB_MODULE_KSQLDB_ENVIRONMENT_BOOTSTRAP_SERVERS}','KSQL_HOST_NAME=${KSQLDB_MODULE_KSQLDB_ENVIRONMENT_KSQL_HOST_NAME}', 'KSQL_CACHE_MAX_BYTES_BUFFERING=0', 'KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE=true','KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR=1','KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE=true','KSQL_KSQL_SERVICE_ID=${VCW_STACK_GLOBAL_STACKPREFIX}_'${KSQLDB_MODULE_KSQLDB_ENVIRONMENT_EXTRA}]
     command: []
-    volumes: [${VCW_STACK_GLOBAL_STACKPREFIX}_queries_volume:/vcw/pwd]
+    volumes: [${VCW_STACK_GLOBAL_STACKPREFIX}_queries_volume:/vcw/queries]
     ports: []
     networks: [${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay]
     deploy:
@@ -24,7 +24,7 @@ services:
       traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb.middlewares=${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb@docker,
       traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb.entrypoints=infometis,
       traefik.http.routers.${VCW_STACK_GLOBAL_STACKPREFIX}_ksqldb.rule=PathPrefix("/${VCW_STACK_GLOBAL_URLPREFIX}")]
-${VCW_STACK_GRAFANA_COMPOSE_EXTENSIONS}
+${KSQLDB_COMPOSE_EXTENSIONS}
 # END SERVICE hkvb/confluent/ksqldb/traefik
 
 networks: {${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }, ${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true }}
